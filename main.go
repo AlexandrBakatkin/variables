@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	var stack = collections.Stack{}
+	/*var stack = collections.Stack{}
 	stack.Push(1)
 	stack.Push(2)
 	stack.Push(3)
@@ -24,5 +24,14 @@ func main() {
 		fmt.Println(names[i])
 	}
 	queue.Pop()
-	fmt.Println(queue)
+	fmt.Println(queue)*/
+
+	var dequeue = collections.Dequeue{}
+	dequeue.PushFirst(2)
+	dequeue.PushFirst(1)
+	dequeue.PushFirst(3)
+	dequeue.PushFirst(4)
+	dequeue.PopLast()
+	dequeue.PopFirst()
+	fmt.Println(dequeue)
 }

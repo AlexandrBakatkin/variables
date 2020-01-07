@@ -8,10 +8,12 @@ type Queue struct {
 	queue []interface{}
 }
 
+// Push prepends an element to the back of the queue.
 func (q *Queue) Push(val interface{}) {
 	q.queue = append(q.queue, val)
 }
 
+// Pop removes and returns the element from the front of the queue.
 func (q *Queue) Pop() (interface{}, error) {
 	length := len(q.queue)
 

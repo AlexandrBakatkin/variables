@@ -2,40 +2,37 @@ package collections
 
 import "errors"
 
-type Dequeue []int
-
-var lengthDequeue = 0
-
-func (dequeue Dequeue) PushFirst(val int) {
-	dequeue = append(dequeue, val)
+type Dequeue struct {
+	dequeue []interface{}
 }
 
-func (dequeue Dequeue) PushLast(val int) {
-	dequeue = append(dequeue, val)
-	lengthDequeue++
+func (dq *Dequeue) PushFirst(val interface{}) {
+	arr := []interface{}{val}
+	dq.dequeue = append(arr, dq.dequeue[:]...)
 }
 
-func (dequeue Dequeue) PopFirst() (int, error) {
-	if lengthQueue <= 0 {
+func (dq *Dequeue) PushLast(val interface{}) {
+	dq.dequeue = append(dq.dequeue, val)
+}
+
+func (dq *Dequeue) PopFirst() (interface{}, error) {
+	if len(dq.dequeue) == 0 {
 		return 0, errors.New("Stack is empty")
 	}
-	temp := dequeue
-	firstVal := temp[0]
-	dequeue = temp[1:]
+	firstVal := dq.dequeue[0]
+	dq.dequeue = dq.dequeue[1:]
 	return firstVal, nil
 }
 
-func (dequeue Dequeue) PopLast() (int, error) {
-	if lengthQueue <= 0 {
+func (dq *Dequeue) PopLast() (interface{}, error) {
+	if len(dq.dequeue) == 0 {
 		return 0, errors.New("Stack is empty")
 	}
-	temp := dequeue
-	pos := len(dequeue) - 1
-	last := temp[pos]
-	dequeue = temp[:pos]
-	return last, nil
+	pop := dq.dequeue[len(dq.dequeue)-1]
+	dq.dequeue = dq.dequeue[:len(dq.dequeue)-1]
+	return pop, nil
 }
 
-func (dequeue *Dequeue) Count() int {
-	return lengthDequeue
+func (dq *Dequeue) Length() int {
+	return len(dq.dequeue)
 }

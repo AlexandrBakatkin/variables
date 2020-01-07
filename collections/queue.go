@@ -1,26 +1,25 @@
 package collections
 
-import "errors"
+import (
+	"errors"
+)
 
-type Queue []int
-
-var lengthQueue = 0
-
-func (queue Queue) Push (val int){
-	queue = append(queue, val)
-
+type Queue struct {
+	queue []interface{}
 }
 
-func (queue *Queue) Count() int {
-	return lengthQueue
+func (q *Queue) Push(val interface{}) {
+	q.queue = append(q.queue, val)
 }
 
-func (queue *Queue) Pop() (int, error) {
-	if lengthQueue <= 0 {
-		return 0, errors.New("Stack is empty")
+func (q *Queue) Pop() (interface{}, error) {
+	length := len(q.queue)
+
+	if length <= 0 {
+		err := errors.New("queue is empty")
+		return 0, err
 	}
-	temp := *queue
-	firstVal := temp[0]
-	*queue = temp[1:]
-	return firstVal, nil
+	pop := q.queue[0]
+	q.queue = q.queue[1:]
+	return pop, nil
 }

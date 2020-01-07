@@ -1,38 +1,25 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"github.com/Bakatkin/learngo/variables/collections"
-	"strings"
 )
 
-var (
-	m = flag.Bool("n", true, "пропуск символа новой строки")
-	sep = flag.String("s", " ", "разделитель")
-)
-
-func main (){
-	n := 10
-	flag.Parse()
-	fmt.Print(strings.Join(flag.Args(), *sep))
-	*m = false
-	if !*m {
-		fmt.Println()
-		fmt.Println(n)
-	}
-
-	fmt.Println("-----------------stack")
-	stack:= new (collections.Stack)
+func main() {
+	var stack = collections.StackInt{}
+	stack.Push(10)
+	stack.Push(20)
+	stack.Push(30)
+	stack.Push(40)
 	fmt.Println(stack.Pop())
-	stack.Push(1)
-	stack.Push(2)
-	stack.Push(3)
 	fmt.Println(stack)
 
-	stack2:= new (collections.Stack)
-	stack2.Push(4)
-	stack2.Push(5)
-	stack2.Push(6)
-	fmt.Println(stack2)
+	var queue = collections.QueueInt{}
+	queue.Push(1)
+	queue.Push(2)
+	queue.Push(3)
+	queue.Push(4)
+	queue.Pop()
+
+	fmt.Println(queue)
 }

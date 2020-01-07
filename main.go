@@ -6,20 +6,23 @@ import (
 )
 
 func main() {
-	var stack = collections.StackInt{}
-	stack.Push(10)
-	stack.Push(20)
-	stack.Push(30)
-	stack.Push(40)
-	fmt.Println(stack.Pop())
+	var stack = collections.Stack{}
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+
+	stack.Pop()
 	fmt.Println(stack)
 
-	var queue = collections.QueueInt{}
-	queue.Push(1)
-	queue.Push(2)
-	queue.Push(3)
-	queue.Push(4)
-	queue.Pop()
+	var queue = collections.Queue{}
+	queue.Push("one")
+	queue.Push("two")
+	queue.Push("three")
 
+	names := []string{"1", "2", "3"}
+	for i := range names {
+		fmt.Println(names[i])
+	}
+	queue.Pop()
 	fmt.Println(queue)
 }

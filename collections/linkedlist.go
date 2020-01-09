@@ -30,6 +30,7 @@ func (ll *LinkedList) Push(val interface{}) {
 func (ll *LinkedList) Pop() interface{} {
 	last := ll.root.Value
 	ll.root = *ll.root.next
+	ll.length--
 	return last
 }
 
